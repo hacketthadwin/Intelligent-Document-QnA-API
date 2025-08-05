@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+python-dotenv
+requests
+langchain-google-genai
+langchain-community
+langchain
+faiss-cpu
+pypdf
+httpx
+google-generativeai
+langchain-together
+docx2txt
+unstructured
+python-magic
