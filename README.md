@@ -1,144 +1,157 @@
 # Intelligent Document Q&A API
 
-An asynchronous, high-performance RAG (Retrieval-Augmented Generation) API designed to answer questions about various documents (PDFs, DOCX files, EMLs) from a URL with speed and accuracy. This project is engineered for stability, low-latency responses, and reliable operation on cloud platforms.
+An open-source, high-performance API that allows you to find answers within your documents using powerful language models. Ingest PDFs, DOCX files, or emails, and get back precise answers to your questions.
+
+This project is designed to be simple to set up and use, acting as a robust backend for any application that needs document-based question-answering capabilities.
 
 ---
 
-## 🔑 Key Features
+## ✨ Features
 
-- **Multi-Format Document Support**  
-  Intelligently processes different document types including `.pdf`, `.docx`, and `.eml` by automatically selecting the appropriate document loader.
+- **Multi-Format Support**  
+  Natively handles PDF, DOCX, and EML files.
 
-- **Hybrid AI Model Integration**  
-  Leverages Google's `embedding-001` for robust and accurate document embedding, combined with Together AI's high-speed `Qwen/Qwen3-235B` model for fast and intelligent question answering.
+- **Persistent Storage**  
+  Uses Supabase with pgvector to store document embeddings. Process a document once and query it forever without reprocessing.
 
-- **High-Performance Caching**  
-  Implements a memory-aware, in-memory cache. The first request for a new document URL is processed and cached; all subsequent requests for the same document are nearly instantaneous.
+- **High-Quality Answers**  
+  Leverages state-of-the-art language models from Together AI and Google for accurate embedding and answer generation.
 
-- **Asynchronous Architecture**  
-  Built on **FastAPI** and **Uvicorn**, the application is fully asynchronous, capable of handling multiple concurrent requests without blocking.
+- **Asynchronous & Fast**  
+  Built with FastAPI for high-performance, non-blocking I/O.
 
-- **Optimized for Cloud Deployment**  
-  Includes a background keep-alive task and lazy loading of models to ensure reliable, continuous operation on free-tier hosting platforms like **Render**.
-
-- **Robust Concurrency Control**  
-  Uses an `asyncio.Semaphore` to manage the flow of API calls to the LLM, preventing rate-limit errors and ensuring stability under load.
-
-- **Output Post-Processing**  
-  Includes logic to filter and clean the LLM's output, guaranteeing a clean, human-readable JSON response without any extraneous thought processes.
-
----
-
-## 🧱 Tech Stack
-
-- **Backend**: FastAPI, Python 3  
-- **AI & Machine Learning**: LangChain, Together AI, Google Gemini, FAISS  
-- **Deployment**: Render, Uvicorn  
-- **Core Libraries**: Pydantic, httpx, PyPDFLoader, Docx2txtLoader, UnstructuredEmailLoader  
+- **Easy to Deploy**  
+  Ready to be containerized with Docker or deployed to any modern cloud hosting service.
 
 ---
 
 ## 🚀 Getting Started
 
-Follow these instructions to set up and run the project on your local machine.
+Follow these steps to get the API server running on your local machine.
 
 ### ✅ Prerequisites
 
-- Python 3.11+
-- A package manager like `pip`
+- Python 3.8+
+- A Supabase account with a project created
+- API keys from Google AI Studio and Together AI
 
-### 1. Clone the Repository
+---
+
+### 📁 1. Clone the Repository
 
 ```bash
-git clone https://github.com/hacketthadwin/Intelligent-Document-QnA-API.git
-cd Intelligent-Document-QnA-API
+git clone https://github.com/hacketthadwin/intelligent-document-qna-api.git
+cd intelligent-document-qna-api
 ```
 
-### 2. Set Up Environment Variables
+---
 
-Create a file named `.env` in the root of the project directory and add your API keys and a security token:
+### 🗃️ 2. Set Up Your Supabase Database
+
+Enable the `vector` extension in your Supabase project:
+
+1. Go to your Supabase project dashboard  
+2. Navigate to the **SQL Editor**  
+3. Run the following SQL command:
+
+```sql
+create extension if not exists vector;
+```
+
+A `documents` table will be automatically created the first time a document is processed via LangChain.
+
+---
+
+### 🔐 3. Configure Environment Variables
+
+Create a `.env` file in the root of your project directory. Use this template:
 
 ```env
+# --- Service Keys ---
 GOOGLE_API_KEY="your_google_api_key_here"
 TOGETHER_API_KEY="your_together_ai_api_key_here"
-API_AUTH_TOKEN="a_long_random_secret_string_of_your_choice"
+
+# --- Supabase Credentials for Vector Store ---
+SUPABASE_URL="https://your_supabase_project_id.supabase.co"
+SUPABASE_SERVICE_KEY="your_supabase_service_role_key_here"
 ```
 
-### 3. Install Dependencies
+---
+
+### 📦 4. Install Dependencies
+
+Install required packages using pip:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the Application
+---
 
-Start the development server using **Uvicorn**:
+### ▶️ 5. Run the API Server
+
+Start the FastAPI server with:
 
 ```bash
-python -m uvicorn app:app --reload
+python -m uvicorn main:app --reload
 ```
 
-The API will now be running on [http://127.0.0.1:8000](http://127.0.0.1:8000)
-
-Interactive API docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) to access the API.  
+Interactive docs available at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 ---
 
-## 📡 API Endpoint
+## ⚙️ API Usage
 
-### `POST /api/process`
+### `POST /query`
 
-This endpoint downloads a document from a given URL, processes it, and answers a list of questions based on its content.
+This endpoint ingests a document (if it's new) and answers questions about it.
 
-#### Headers
+---
 
-```http
-Authorization: Bearer YOUR_API_AUTH_TOKEN
-Content-Type: application/json
-```
+### 📤 Request Body
 
-#### Request Body (JSON)
+- `document_url` (string, required): Public URL to the document you want to query  
+- `questions` (array of strings, required): One or more questions to ask
 
-```json
-{
-  "documents": "https://your-publicly-accessible-document-url.docx",
+#### ✅ Example using `curl`
+
+```bash
+curl -X POST "http://127.0.0.1:8000/query" \
+-H "Content-Type: application/json" \
+-d '{
+  "document_url": "https://arxiv.org/pdf/1706.03762.pdf",
   "questions": [
-    "What is the grace period for premium payment?",
-    "What is the waiting period for pre-existing diseases?",
-    "Does this policy cover maternity expenses?"
+    "What is the title of this paper?",
+    "Summarize the abstract in one sentence."
   ]
-}
+}'
 ```
 
-#### Successful Response (200 OK)
+---
+
+### 📥 Example Success Response
 
 ```json
 {
   "answers": [
-    "A grace period of thirty days is provided for premium payment after the due date.",
-    "There is a waiting period of thirty-six (36) months for pre-existing diseases to be covered.",
-    "Yes, the policy covers maternity expenses after a waiting period of 24 months."
-  ]
+    "The title of the paper is 'Attention Is All You Need'.",
+    "The abstract introduces the Transformer, a new network architecture based solely on attention mechanisms that is more parallelizable and requires significantly less time to train than existing models."
+  ],
+  "document_url": "https://arxiv.org/pdf/1706.03762.pdf",
+  "message": "New document processed and vectors stored in database."
 }
 ```
 
 ---
 
-## 🌐 Deployment
+## 🤝 Contributing
 
-This application is configured for easy deployment on **Render**.
+Contributions are welcome! If you have ideas for features or improvements:
 
-### 🔧 Build & Start Commands
-
-- **Build Command**:  
-  ```bash
-  pip install -r requirements.txt
-  ```
-
-- **Start Command**:  
-  ```bash
-  uvicorn app:app --host 0.0.0.0 --port $PORT
-  ```
-
----
+- Open an issue to discuss  
+- Fork the repository  
+- Create a new branch  
+- Make your changes  
+- Submit a pull request
 
