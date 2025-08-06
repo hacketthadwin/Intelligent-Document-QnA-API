@@ -13,22 +13,46 @@ This project is designed to be simple to set up and use, acting as a robust back
 
 ---
 
+### 🚀 What Makes This Project Different?
+
+Unlike many existing RAG APIs, this project is:
+
+- **Model-Agnostic and Multi-Provider Friendly**  
+  Supports both **Google Gemini** and **Together AI** out of the box — no hard dependency on OpenAI.
+
+- **Cloud-Ready and Free-Tier Optimized**  
+  Specifically engineered to run smoothly on platforms like **Render**, with memory-efficient caching and lazy model loading.
+
+- **Format-Intelligent**  
+  Automatically detects and uses the correct loader for `.pdf`, `.docx`, and `.eml` files — no manual preprocessing required.
+
+- **Minimal Memory Footprint**  
+  Designed for low-resource environments — ideal for free-tier deployments, research prototypes, or student projects.
+
+- **Clean JSON Output**  
+  Filters out verbose LLM reasoning ("Thought: Let's find the answer...") and returns only the clean, relevant answers.
+
+This makes it ideal for developers, students, and startups looking to build document Q&A apps without the complexity or cost of large RAG systems.
+
+---
+
 ## ✨ Features
 
 - **Multi-Format Support**  
-  Natively handles PDF, DOCX, and EML files.
+  Natively handles `.pdf`, `.docx`, and `.eml` files.
 
 - **Persistent Storage**  
-  Uses Supabase with pgvector to store document embeddings. Process a document once and query it forever without reprocessing.
+  Uses **Supabase** with `pgvector` to store document embeddings. Process a document once and query it instantly anytime after.
 
 - **High-Quality Answers**  
-  Leverages state-of-the-art language models from Together AI and Google for accurate embedding and answer generation.
+  Leverages state-of-the-art language models from **Together AI** and **Google** for accurate embeddings and intelligent Q&A.
 
 - **Asynchronous & Fast**  
-  Built with FastAPI for high-performance, non-blocking I/O.
+  Built with **FastAPI** for high-performance, non-blocking I/O.
 
 - **Easy to Deploy**  
-  Ready to be containerized with Docker or deployed to any modern cloud hosting service.
+  Ready to be containerized with **Docker** or deployed to any modern cloud platform.
+
 
 ---
 
