@@ -7,7 +7,7 @@
 [![Model](https://img.shields.io/badge/AI-TogetherAI%20%2B%20GoogleAI-orange)](#)
 
 
-An open-source, high-performance API that allows you to find answers within your documents using powerful language models. Ingest PDFs, DOCX files, or emails, and get back precise answers to your questions.
+A high-performance API that allows you to find answers within your documents using powerful language models. Ingest PDFs, DOCX files, or emails, and get back precise answers to your questions.
 
 This project is designed to be simple to set up and use, acting as a robust backend for any application that needs document-based question-answering capabilities.
 
