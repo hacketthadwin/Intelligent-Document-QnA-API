@@ -6,7 +6,7 @@
 [![LangChain](https://img.shields.io/badge/LangChain-enabled-yellow)](#)
 [![PostgreSQL](https://img.shields.io/badge/db-Supabase%20%2B%20pgvector-009688)](#)
 [![Model](https://img.shields.io/badge/AI-GeminiAI%20%2B%20GoogleAI-orange)](#)
-
+[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://hacketthadwin-intelligent-document-qna-api.hf.space)
 
 A high-performance API that allows you to find answers within your documents using powerful language models. Ingest PDFs, DOCX files, or emails, and get back precise answers to your questions.
 
