@@ -1,11 +1,3 @@
----
-title: Intelligent Document QnA API
-emoji: 📚
-colorFrom: blue
-colorTo: green
-sdk: docker
-app_port: 7860
----
 
 # Intelligent Document Q&A API
 [![Status](https://img.shields.io/badge/status-complete-brightgreen)](#)
