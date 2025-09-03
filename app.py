@@ -23,7 +23,7 @@ from langchain_community.document_loaders import PyPDFLoader, Docx2txtLoader, Un
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import SupabaseVectorStore
 from langchain_together import ChatTogether
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
@@ -35,7 +35,6 @@ from supabase.client import Client, create_client
 
 load_dotenv()
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
-TOGETHER_API_KEY = os.environ.get("TOGETHER_API_KEY")
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_SERVICE_KEY = os.environ.get("SUPABASE_SERVICE_KEY")
 
@@ -71,8 +70,8 @@ def initialize_components():
     """Initializes models and clients if they haven't been already."""
     global llm, gemini_embedder, supabase_client
     if llm is None:
-        print("Initializing Together AI LLM...")
-        llm = ChatTogether(model="mistralai/Mixtral-8x7B-Instruct-v0.1", temperature=0.1)
+        print("Initializing Gemini AI LLM...")
+        llm = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.2, convert_system_message_to_human=True)
     if gemini_embedder is None:
         print("Initializing Google Gemini Embedding model...")
         gemini_embedder = GoogleGenerativeAIEmbeddings(
