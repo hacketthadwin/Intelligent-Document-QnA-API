@@ -13,7 +13,7 @@ app_port: 7860
 [![Framework](https://img.shields.io/badge/framework-FastAPI-blue)](#)
 [![LangChain](https://img.shields.io/badge/LangChain-enabled-yellow)](#)
 [![PostgreSQL](https://img.shields.io/badge/db-Supabase%20%2B%20pgvector-009688)](#)
-[![Model](https://img.shields.io/badge/AI-TogetherAI%20%2B%20GoogleAI-orange)](#)
+[![Model](https://img.shields.io/badge/AI-GeminiAI%20%2B%20GoogleAI-orange)](#)
 
 
 A high-performance API that allows you to find answers within your documents using powerful language models. Ingest PDFs, DOCX files, or emails, and get back precise answers to your questions.
@@ -27,7 +27,7 @@ This project is designed to be simple to set up and use, acting as a robust back
 Unlike many existing RAG APIs, this project is:
 
 - **Model-Agnostic and Multi-Provider Friendly**  
-  Supports both **Google Gemini** and **Together AI** out of the box — no hard dependency on OpenAI.
+  Supports both **Google Gemini** and **Gemini AI** out of the box — no hard dependency on OpenAI.
 
 - **Cloud-Ready and Free-Tier Optimized**  
   Specifically engineered to run smoothly on platforms like **Render**, with memory-efficient caching and lazy model loading.
@@ -54,7 +54,7 @@ This makes it ideal for developers, students, and startups looking to build docu
   Uses **Supabase** with `pgvector` to store document embeddings. Process a document once and query it instantly anytime after.
 
 - **High-Quality Answers**  
-  Leverages state-of-the-art language models from **Together AI** and **Google** for accurate embeddings and intelligent Q&A.
+  Leverages state-of-the-art language models from **Gemini AI** and **Google** for accurate embeddings and intelligent Q&A.
 
 - **Asynchronous & Fast**  
   Built with **FastAPI** for high-performance, non-blocking I/O.
@@ -73,7 +73,7 @@ Follow these steps to get the API server running on your local machine.
 
 - Python 3.8+
 - A Supabase account with a project created
-- API keys from Google AI Studio and Together AI
+- API keys from Google AI Studio and Gemini AI
 
 ---
 
@@ -109,8 +109,6 @@ Create a `.env` file in the root of your project directory. Use this template:
 ```env
 # --- Service Keys ---
 GOOGLE_API_KEY="your_google_api_key_here"
-TOGETHER_API_KEY="your_together_ai_api_key_here"
-
 # --- Supabase Credentials for Vector Store ---
 SUPABASE_URL="https://your_supabase_project_id.supabase.co"
 SUPABASE_SERVICE_KEY="your_supabase_service_role_key_here"
