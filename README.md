@@ -1,12 +1,12 @@
 
 # Intelligent Document Q&A API
+[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://hacketthadwin-intelligent-document-qna-api.hf.space)
 [![Status](https://img.shields.io/badge/status-complete-brightgreen)](#)
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](#)
 [![Framework](https://img.shields.io/badge/framework-FastAPI-blue)](#)
 [![LangChain](https://img.shields.io/badge/LangChain-enabled-yellow)](#)
-[![PostgreSQL](https://img.shields.io/badge/db-Supabase%20%2B%20pgvector-009688)](#)
-[![Model](https://img.shields.io/badge/AI-GeminiAI%20%2B%20GoogleAI-orange)](#)
-[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://hacketthadwin-intelligent-document-qna-api.hf.space)
+[![Database](https://img.shields.io/badge/db-Supabase%20%2B%20pgvector-009688)](#)
+[![Model](https://img.shields.io/badge/AI-Google%20Gemini-orange)](#)
 
 A high-performance API that allows you to find answers within your documents using powerful language models. Ingest PDFs, DOCX files, or emails, and get back precise answers to your questions.
 
@@ -14,6 +14,9 @@ This project is designed to be simple to set up and use, acting as a robust back
 
 ---
 
+Live API Demo: https://hacketthadwin-intelligent-document-qna-api.hf.space
+
+---
 ### 🚀 What Makes This Project Different?
 
 Unlike many existing RAG APIs, this project is:
