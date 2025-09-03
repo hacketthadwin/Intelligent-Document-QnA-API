@@ -25,7 +25,7 @@ Unlike many existing RAG APIs, this project is:
   Supports **Google Gemini** - no hard dependency on OpenAI.
 
 - **Cloud-Ready and Free-Tier Optimized**  
-  Specifically engineered to run smoothly on platforms like **Hugging Face Spaces**, with memory-efficient caching and Eager model loading.
+  Specifically engineered to run smoothly on platforms like **Hugging Face Spaces**, with memory-efficient caching and eager model loading.
 
 - **Format-Intelligent**  
   Automatically detects and uses the correct loader for `.pdf`, `.docx`, and `.eml` files — no manual preprocessing required.
