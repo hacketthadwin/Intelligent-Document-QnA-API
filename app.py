@@ -71,7 +71,7 @@ def initialize_components():
     global llm, gemini_embedder, supabase_client
     if llm is None:
         print("Initializing Gemini AI LLM...")
-        llm = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.2, convert_system_message_to_human=True)
+        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.2, convert_system_message_to_human=True)
     if gemini_embedder is None:
         print("Initializing Google Gemini Embedding model...")
         gemini_embedder = GoogleGenerativeAIEmbeddings(
