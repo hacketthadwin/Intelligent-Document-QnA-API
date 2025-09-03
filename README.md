@@ -22,10 +22,10 @@ Live API Demo: https://hacketthadwin-intelligent-document-qna-api.hf.space
 Unlike many existing RAG APIs, this project is:
 
 - **Model-Agnostic and Multi-Provider Friendly**  
-  Supports both **Google Gemini** and **Gemini AI** out of the box — no hard dependency on OpenAI.
+  Supports **Google Gemini** - no hard dependency on OpenAI.
 
 - **Cloud-Ready and Free-Tier Optimized**  
-  Specifically engineered to run smoothly on platforms like **Render**, with memory-efficient caching and lazy model loading.
+  Specifically engineered to run smoothly on platforms like **Hugging Face Spaces**, with memory-efficient caching and lazy model loading.
 
 - **Format-Intelligent**  
   Automatically detects and uses the correct loader for `.pdf`, `.docx`, and `.eml` files — no manual preprocessing required.
