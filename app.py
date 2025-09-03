@@ -1,5 +1,5 @@
 # To run this application:
-# 1. Make sure you have a .env file with your service keys (e.g., GOOGLE_API_KEY, SUPABASE_URL, TOGETHER_API_KEY, SUPABASE_SERVICE_KEY).
+# 1. Make sure you have a .env file with your service keys (e.g., GOOGLE_API_KEY, SUPABASE_URL, SUPABASE_SERVICE_KEY).
 # 2. Ensure your Supabase database is set up with the 'vector' extension.
 # 3. Install required packages: pip install -r requirements.txt
 # 4. Run the server: python -m uvicorn main:app --reload
@@ -54,7 +54,7 @@ app.add_middleware(
 )
 
 # --- Lazy Loading for Models and Clients ---
-llm: Optional[ChatTogether] = None
+llm: Optional[ChatGoogleGenerativeAI] = None
 gemini_embedder: Optional[GoogleGenerativeAIEmbeddings] = None
 supabase_client: Optional[Client] = None
 
